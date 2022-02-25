@@ -27,8 +27,8 @@ const usuariosPost = async (req, res = response) => {
 
 
 
-    const {name, email, password, rol} = req.body;
-    const user = new User({name, email, password, rol});
+    const {name, email, password, role} = req.body;
+    const user = new User({name, email, password, role});
 
     // Encriptar la constraseña
     const salt = bcryptjs.genSaltSync();
@@ -61,15 +61,14 @@ const usuariosPut = async(req, res = response) => {
     });
 }
 
-const usuariosDelete = async(req, res = response) => {
+const userDelete = async(req, res = response) => {
     
     const {id} = req.params;
 
     //Fisicamente lo borramos
     // const user = await User.findByIdAndDelete( id );
 
-    const user = await User.findByIdAndUpdate( id, {state:false})
-
+    const user = await User.findByIdAndUpdate( id, {state:false});
     res.json({
         user
     });
@@ -86,7 +85,7 @@ module.exports = {
     usuariosGet,
     usuariosPost,
     usuariosPut,
-    usuariosDelete,
+    userDelete,
     usuariosPatch,
     
 }
